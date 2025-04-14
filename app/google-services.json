@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "444249613628",
+    "project_id": "mobilalkszallasapp",
+    "storage_bucket": "mobilalkszallasapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444249613628:android:0f241f1df0838c95ae6a39",
+        "android_client_info": {
+          "package_name": "com.example.szallasapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444249613628-fa02rj76ffflseakc8q2q8b5kva97442.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGtGs2HR1IM_JnR1rOr8Q8D771vxnWrbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444249613628-fa02rj76ffflseakc8q2q8b5kva97442.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
