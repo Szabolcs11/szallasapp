@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
             welcomeText.setText("Üdv, " + user.getEmail());
         }
 
-        // Slide animation for image slider
         Animation slideIn = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
         Animation slideOut = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
         imageSlider.setInAnimation(slideIn);
