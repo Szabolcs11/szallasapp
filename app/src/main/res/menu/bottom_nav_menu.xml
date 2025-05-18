@@ -4,23 +4,23 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/home"
         android:title="Főoldal"/>
 
     <item
         android:id="@+id/nav_hotels"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/hotel"
         android:title="Hirdetések"
         />
 
     <item
         android:id="@+id/nav_newhotel"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/add"
         android:title="Új Hirdetések"
         />
 
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/profile"
         android:title="Profil" />
 </menu>

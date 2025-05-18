@@ -1,5 +1,6 @@
 package com.example.szallasapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -7,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -49,6 +51,27 @@ public class NewHotelActivity extends AppCompatActivity {
             }
 
             saveHotel(name, description, price, location);
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_newhotel);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_hotels) {
+                startActivity(new Intent(this, HotelsActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_newhotel) {
+                startActivity(new Intent(this, NewHotelActivity.class));
+                return true;
+            } else {
+                return false;
+            }
         });
     }
 

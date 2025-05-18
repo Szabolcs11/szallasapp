@@ -72,6 +72,9 @@ public class HotelsActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
                 return true;
+            } else if (itemId == R.id.nav_newhotel) {
+                startActivity(new Intent(this, NewHotelActivity.class));
+                return true;
             } else {
                 return false;
             }
