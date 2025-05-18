@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -76,7 +77,10 @@ public class ProfileActivity extends AppCompatActivity {
                         userHotels.clear();
                         for (DocumentSnapshot doc : documents) {
                             Hotel hotel = doc.toObject(Hotel.class);
-                            userHotels.add(hotel);
+                            if (hotel != null) {
+                                hotel.setUid(doc.getId());
+                                userHotels.add(hotel);
+                            }
                         }
                         hotelAdapter.notifyDataSetChanged();
                     } else {

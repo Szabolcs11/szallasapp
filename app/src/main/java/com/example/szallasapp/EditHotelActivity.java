@@ -23,7 +23,7 @@ public class EditHotelActivity extends AppCompatActivity {
         locationEditText = findViewById(R.id.editHotelLocation);
         saveButton = findViewById(R.id.saveHotelButton);
 
-        hotelId = getIntent().getStringExtra("hotelId");
+        hotelId = getIntent().getStringExtra("hotel_id");
 
         FirebaseFirestore.getInstance().collection("hotels").document(hotelId)
                 .get().addOnSuccessListener(doc -> {
