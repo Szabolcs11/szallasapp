@@ -19,6 +19,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView emailTextView;
@@ -44,6 +47,9 @@ public class ProfileActivity extends AppCompatActivity {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         emailTextView.setText("Email: " + currentUserEmail);
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        emailTextView.startAnimation(fadeIn);
+
 
         loadUserHotels(currentUserId);
 
