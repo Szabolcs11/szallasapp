@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, HotelsActivity.class));
                 return true;
             } else if (itemId == R.id.nav_profile) {
-                startActivity(new Intent(this, RegisterActivity.class));
+                startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             } else {
                 return false;
@@ -91,13 +91,11 @@ public class MainActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             QuerySnapshot documentSnapshots = task.getResult();
-                            hotelList.clear();  // Ürítsd ki a listát, ha újratöltöd
+                            hotelList.clear();
                             for (DocumentSnapshot document : documentSnapshots) {
                                 Hotel hotel = document.toObject(Hotel.class);
-                                hotelList.add(hotel);  // Hozzáadás a listához
+                                hotelList.add(hotel);
                             }
-
-                            // Frissítjük az adaptert
                             hotelAdapter.notifyDataSetChanged();
                         } else {
                             Log.e("Firestore", "Hiba történt: ", task.getException());
