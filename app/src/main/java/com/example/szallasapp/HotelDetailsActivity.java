@@ -1,11 +1,15 @@
 package com.example.szallasapp;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HotelDetailsActivity extends AppCompatActivity {
+
+    private boolean isReserved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +20,7 @@ public class HotelDetailsActivity extends AppCompatActivity {
         TextView locationTextView = findViewById(R.id.detailLocation);
         TextView priceTextView = findViewById(R.id.detailPrice);
         TextView descriptionTextView = findViewById(R.id.detailDescription);
+        Button reserveButton = findViewById(R.id.reserveButton);
 
         String name = getIntent().getStringExtra("name");
         String location = getIntent().getStringExtra("location");
@@ -26,5 +31,14 @@ public class HotelDetailsActivity extends AppCompatActivity {
         locationTextView.setText(location);
         priceTextView.setText(price + " Ft");
         descriptionTextView.setText(description);
+
+        reserveButton.setOnClickListener(v -> {
+            if (isReserved) {
+                Toast.makeText(HotelDetailsActivity.this, "Már lefoglaltad ezt a szállást!", Toast.LENGTH_SHORT).show();
+            } else {
+                isReserved = true;
+                Toast.makeText(HotelDetailsActivity.this, "Sikeresen lefoglaltad a szállást", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
