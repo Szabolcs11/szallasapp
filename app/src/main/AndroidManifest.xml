@@ -23,7 +23,7 @@
             android:exported="false" />
         <activity android:name=".HotelDetailsActivity" />
         <activity android:name=".ProfileActivity" />
-
+        <activity android:name=".EditHotelActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

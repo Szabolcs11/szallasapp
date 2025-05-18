@@ -37,7 +37,7 @@ public class HotelsActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         hotelList = new ArrayList<>();
-        hotelAdapter = new HotelAdapter(hotelList, this);
+        hotelAdapter = new HotelAdapter(hotelList, this, false);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

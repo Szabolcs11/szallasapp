@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         userHotelsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         userHotels = new ArrayList<>();
-        hotelAdapter = new HotelAdapter(userHotels, this);
+        hotelAdapter = new HotelAdapter(userHotels, this, true);
         userHotelsRecyclerView.setAdapter(hotelAdapter);
 
         String currentUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
@@ -71,17 +71,12 @@ public class ProfileActivity extends AppCompatActivity {
                 .whereEqualTo("userId", userId)
                 .get()
                 .addOnCompleteListener(task -> {
-                    Log.i("msg", "task succs");
                     if (task.isSuccessful()) {
-                        Log.i("msg", "task TRUE");
-                        Log.i("msg", userId);
                         QuerySnapshot documents = task.getResult();
                         userHotels.clear();
                         for (DocumentSnapshot doc : documents) {
-                            Log.i("msg", "for");
                             Hotel hotel = doc.toObject(Hotel.class);
                             userHotels.add(hotel);
-                            Log.i("msg", hotel.getName());
                         }
                         hotelAdapter.notifyDataSetChanged();
                     } else {

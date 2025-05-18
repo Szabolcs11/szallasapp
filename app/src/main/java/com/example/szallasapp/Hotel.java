@@ -6,6 +6,7 @@ public class Hotel {
     private String imageUrl;
     private String location;
     private String price;
+    private String uid;
 
     public Hotel() {
         // Default constructor required for Firestore
@@ -57,5 +58,13 @@ public class Hotel {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }
