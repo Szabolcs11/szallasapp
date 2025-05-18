@@ -14,6 +14,12 @@
         />
 
     <item
+        android:id="@+id/nav_newhotel"
+        android:icon="@drawable/ic_home"
+        android:title="Új Hirdetések"
+        />
+
+    <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_home"
         android:title="Profil" />

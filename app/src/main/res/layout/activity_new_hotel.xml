@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editHotelName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Név"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editHotelDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Leírás"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/editHotelLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Város"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/editHotelPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ár (/éjszaka)"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/saveHotelButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mentés"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+</ScrollView>
