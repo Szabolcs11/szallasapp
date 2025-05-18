@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         hotelList = new ArrayList<>();
-        hotelAdapter = new HotelAdapter(hotelList);
+        hotelAdapter = new HotelAdapter(hotelList, this);
         recyclerView.setAdapter(hotelAdapter);
         FirebaseApp.initializeApp(this);
         welcomeText = findViewById(R.id.welcomeText);

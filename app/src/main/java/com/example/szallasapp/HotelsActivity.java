@@ -2,19 +2,19 @@ package com.example.szallasapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +25,39 @@ public class HotelsActivity extends AppCompatActivity {
     private List<Hotel> hotelList;
     private RecyclerView recyclerView;
 
+    private EditText editTextLocation, editTextMinPrice, editTextMaxPrice;
+    private Button buttonSearch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Szálláshely lefoglaló app");
         setContentView(R.layout.hotels_view);
 
+        FirebaseApp.initializeApp(this);
+
         hotelList = new ArrayList<>();
-        hotelAdapter = new HotelAdapter(hotelList);
+        hotelAdapter = new HotelAdapter(hotelList, this);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        hotelAdapter = new HotelAdapter(hotelList);
         recyclerView.setAdapter(hotelAdapter);
-        FirebaseApp.initializeApp(this);
+
+        editTextLocation = findViewById(R.id.editTextLocation);
+        editTextMinPrice = findViewById(R.id.editTextMinPrice);
+        editTextMaxPrice = findViewById(R.id.editTextMaxPrice);
+        buttonSearch = findViewById(R.id.buttonSearch);
+
+        buttonSearch.setOnClickListener(v -> {
+            String location = editTextLocation.getText().toString().trim();
+            String minPriceStr = editTextMinPrice.getText().toString().trim();
+            String maxPriceStr = editTextMaxPrice.getText().toString().trim();
+
+            Double minPrice = TextUtils.isEmpty(minPriceStr) ? null : Double.parseDouble(minPriceStr);
+            Double maxPrice = TextUtils.isEmpty(maxPriceStr) ? null : Double.parseDouble(maxPriceStr);
+
+            queryHotelsFromFirestore(location, minPrice, maxPrice);
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.nav_hotels);
@@ -59,31 +77,42 @@ public class HotelsActivity extends AppCompatActivity {
             }
         });
 
-        loadHotelsFromFirestore();
+        queryHotelsFromFirestore(null, null, null); // Load all hotels initially
     }
 
-    private void loadHotelsFromFirestore() {
+    private void queryHotelsFromFirestore(String location, Double minPrice, Double maxPrice) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Ellenőrizd, hogy a db nem null!
-        if (db != null) {
-            db.collection("hotels") // Kollekció neve
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            QuerySnapshot documentSnapshots = task.getResult();
-                            hotelList.clear();
-                            for (DocumentSnapshot document : documentSnapshots) {
-                                Hotel hotel = document.toObject(Hotel.class);
-                                hotelList.add(hotel);
-                            }
-                            hotelAdapter.notifyDataSetChanged();
-                        } else {
-                            Log.e("Firestore", "Hiba történt: ", task.getException());
-                        }
+        Query query = db.collection("hotels");
+
+        if (!TextUtils.isEmpty(location)) {
+            query = query.whereEqualTo("location", location);
+            query.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    hotelList.clear();
+                    task.getResult().forEach(document -> {
+                        Hotel hotel = document.toObject(Hotel.class);
+                        hotelList.add(hotel);
                     });
-        } else {
-            Log.e("Firestore", "FirebaseFirestore példány null!");
+                    hotelAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e("Firestore", "Hiba történt: ", task.getException());
+                }
+            });
+            return;
         }
+
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                hotelList.clear();
+                task.getResult().forEach(document -> {
+                    Hotel hotel = document.toObject(Hotel.class);
+                    hotelList.add(hotel);
+                });
+                hotelAdapter.notifyDataSetChanged();
+            } else {
+                Log.e("Firestore", "Hiba történt: ", task.getException());
+            }
+        });
     }
 }
