@@ -26,6 +26,7 @@ public class HotelDetailsActivity extends AppCompatActivity {
         String location = getIntent().getStringExtra("location");
         String price = getIntent().getStringExtra("price");
         String description = getIntent().getStringExtra("description");
+        String userId = getIntent().getStringExtra("userid");
 
         nameTextView.setText(name);
         locationTextView.setText(location);
@@ -40,5 +41,7 @@ public class HotelDetailsActivity extends AppCompatActivity {
                 Toast.makeText(HotelDetailsActivity.this, "Sikeresen lefoglaltad a szállást", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 }

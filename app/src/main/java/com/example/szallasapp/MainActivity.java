@@ -1,5 +1,8 @@
 package com.example.szallasapp;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,6 +85,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loadHotelsFromFirestore();
+        scheduleJob();
+    }
+
+    private void scheduleJob() {
+        JobInfo jobInfo = new JobInfo.Builder(123, new ComponentName(this, NotificationJobService.class))
+                .setPersisted(true)  // A feladat túléli az eszköz újraindítását
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY) // Internet szükséges
+                .setPeriodic(60 * 60 * 1000)  // 1 óra (1 óránként)
+                .build();
+
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(jobInfo);
     }
 
     private void loadHotelsFromFirestore() {
@@ -90,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         // Ellenőrizd, hogy a db nem null!
         if (db != null) {
             db.collection("hotels") // Kollekció neve
+                    .limit(4)
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {

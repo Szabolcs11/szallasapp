@@ -104,6 +104,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
                     intent.putExtra("location", hotel.getLocation());
                     intent.putExtra("price", hotel.getPrice());
                     intent.putExtra("description", hotel.getDescription());
+                    intent.putExtra("userid", hotel.getUserId());
                     context.startActivity(intent);
                 });
             }
