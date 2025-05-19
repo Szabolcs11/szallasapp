@@ -25,29 +25,29 @@
                 android:layout_height="wrap_content"
                 android:inputType="text" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+<!--            <LinearLayout-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp">-->
 
-                <EditText
-                    android:id="@+id/editTextMinPrice"
-                    android:hint="Min ár"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+<!--                <EditText-->
+<!--                    android:id="@+id/editTextMinPrice"-->
+<!--                    android:hint="Min ár"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="number" />-->
 
-                <EditText
-                    android:id="@+id/editTextMaxPrice"
-                    android:hint="Max ár"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:layout_marginStart="8dp" />
-            </LinearLayout>
+<!--                <EditText-->
+<!--                    android:id="@+id/editTextMaxPrice"-->
+<!--                    android:hint="Max ár"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="number"-->
+<!--                    android:layout_marginStart="8dp" />-->
+<!--            </LinearLayout>-->
 
             <Button
                 android:id="@+id/buttonSearch"

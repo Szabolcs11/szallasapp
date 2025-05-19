@@ -44,19 +44,19 @@ public class HotelsActivity extends AppCompatActivity {
         recyclerView.setAdapter(hotelAdapter);
 
         editTextLocation = findViewById(R.id.editTextLocation);
-        editTextMinPrice = findViewById(R.id.editTextMinPrice);
-        editTextMaxPrice = findViewById(R.id.editTextMaxPrice);
+//        editTextMinPrice = findViewById(R.id.editTextMinPrice);
+//        editTextMaxPrice = findViewById(R.id.editTextMaxPrice);
         buttonSearch = findViewById(R.id.buttonSearch);
 
         buttonSearch.setOnClickListener(v -> {
             String location = editTextLocation.getText().toString().trim();
-            String minPriceStr = editTextMinPrice.getText().toString().trim();
-            String maxPriceStr = editTextMaxPrice.getText().toString().trim();
+//            String minPriceStr = editTextMinPrice.getText().toString().trim();
+//            String maxPriceStr = editTextMaxPrice.getText().toString().trim();
 
-            Double minPrice = TextUtils.isEmpty(minPriceStr) ? null : Double.parseDouble(minPriceStr);
-            Double maxPrice = TextUtils.isEmpty(maxPriceStr) ? null : Double.parseDouble(maxPriceStr);
+//            Double minPrice = TextUtils.isEmpty(minPriceStr) ? null : Double.parseDouble(minPriceStr);
+//            Double maxPrice = TextUtils.isEmpty(maxPriceStr) ? null : Double.parseDouble(maxPriceStr);
 
-            queryHotelsFromFirestore(location, minPrice, maxPrice);
+            queryHotelsFromFirestore(location, null, null);
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -80,7 +80,7 @@ public class HotelsActivity extends AppCompatActivity {
             }
         });
 
-        queryHotelsFromFirestore(null, null, null); // Load all hotels initially
+        queryHotelsFromFirestore(null, null, null);
     }
 
     private void queryHotelsFromFirestore(String location, Double minPrice, Double maxPrice) {
